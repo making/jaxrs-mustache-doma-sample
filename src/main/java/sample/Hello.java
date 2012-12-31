@@ -7,11 +7,14 @@ import javax.ws.rs.QueryParam;
 @Path("hello")
 public class Hello {
 
+    private MessageDao messageDao = new MessageDaoImpl();
+
     @GET
     @Template("hello.html")
     public HelloResponse sayHello(@QueryParam("yourName") String yourName) {
         HelloResponse response = new HelloResponse();
-        response.setMessage("Hello, " + yourName + "!");
+        Message message = messageDao.select(1L);
+        response.setMessage(String.format(message.template, yourName));
         return response;
     }
 
