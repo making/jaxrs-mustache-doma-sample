@@ -26,7 +26,7 @@ public class JaxrsThymeleafTest {
                 .get(String.class);
         String expected =
             "<!DOCTYPE html PUBLIC \"-//W3C//DTD XHTML 1.0 Strict//EN\""
-                + " \"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd\">\n"
+                + " \"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd\">\n\n"
                 + "<html xmlns=\"http://www.w3.org/1999/xhtml\">\n"
                 + "<head>\n"
                 + "<title>hello</title>\n"
@@ -34,7 +34,9 @@ public class JaxrsThymeleafTest {
                 + "<body>\n"
                 + "<p>Hello, world!</p>\n"
                 + "</body>\n"
-                + "</html>";
+                + "</html>\n";
+        System.out.println(actual);
+        System.out.println(expected);
         assertThat(actual, is(expected));
     }
 

@@ -1,13 +1,12 @@
 package sample;
 
-import org.glassfish.grizzly.http.server.HttpServer;
+import com.sun.grizzly.http.SelectorThread;
+import com.sun.jersey.api.container.grizzly.GrizzlyServerFactory;
+import com.sun.jersey.api.core.ClassNamesResourceConfig;
+import com.sun.jersey.api.core.ResourceConfig;
 import org.junit.rules.TestRule;
 import org.junit.runner.Description;
 import org.junit.runners.model.Statement;
-
-import com.sun.jersey.api.container.grizzly2.GrizzlyServerFactory;
-import com.sun.jersey.api.core.ClassNamesResourceConfig;
-import com.sun.jersey.api.core.ResourceConfig;
 
 public class JaxrsTester extends Statement implements TestRule {
 
@@ -37,11 +36,11 @@ public class JaxrsTester extends Statement implements TestRule {
     @Override
     public void evaluate() throws Throwable {
         ResourceConfig rc = new ClassNamesResourceConfig(classes);
-        HttpServer server = GrizzlyServerFactory.createHttpServer(url, rc);
+        SelectorThread server = GrizzlyServerFactory.create(url, rc);
         try {
             base.evaluate();
         } finally {
-            server.stop();
+            server.stopEndpoint();
         }
     }
 
