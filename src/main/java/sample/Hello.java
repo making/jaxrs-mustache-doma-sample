@@ -1,13 +1,19 @@
 package sample;
 
+import javax.ejb.LocalBean;
+import javax.ejb.Stateless;
+import javax.inject.Inject;
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
 import javax.ws.rs.QueryParam;
 
 @Path("hello")
+@LocalBean
+@Stateless
 public class Hello {
 
-    private MessageDao messageDao = new MessageDaoImpl();
+    @Inject
+    private MessageDao messageDao;
 
     @GET
     @Template("hello.html")

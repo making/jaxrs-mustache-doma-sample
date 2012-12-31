@@ -10,6 +10,7 @@ import static org.hamcrest.CoreMatchers.*;
 import org.jboss.arquillian.container.test.api.Deployment;
 import org.jboss.arquillian.junit.Arquillian;
 import org.jboss.shrinkwrap.api.ShrinkWrap;
+import org.jboss.shrinkwrap.api.asset.EmptyAsset;
 import org.jboss.shrinkwrap.api.spec.WebArchive;
 import static org.junit.Assert.*;
 import org.junit.Before;
@@ -64,6 +65,7 @@ public class JaxrsThymeleafTest {
                 .addPackages(true, "sample")
                 .addAsResource("META-INF/sample/MessageDao/select.sql")
                 .addAsResource("META-INF/services/javax.ws.rs.ext.MessageBodyWriter")
-                .addAsResource("hello.html");
+                .addAsResource("hello.html")
+                .addAsWebInfResource(EmptyAsset.INSTANCE, "beans.xml");
     }
 }
