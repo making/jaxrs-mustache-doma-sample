@@ -1,17 +1,24 @@
 package sample;
 
-import com.google.inject.AbstractModule;
-import com.google.inject.Guice;
-import com.google.inject.Injector;
-import com.google.inject.Module;
-import static org.hamcrest.CoreMatchers.*;
-import static org.junit.Assert.*;
+
 import org.junit.Before;
 import org.junit.Test;
-import static org.mockito.Mockito.*;
 import sample.Hello.HelloResponse;
 
+import static org.hamcrest.CoreMatchers.is;
+import static org.junit.Assert.assertThat;
+import static org.mockito.Mockito.*;
+
 public class HelloTest {
+    private MessageDao messageDao;
+    private Hello hello;
+
+    @Before
+    public void setUp() throws Exception {
+        messageDao = mock(MessageDao.class);
+        hello = new Hello();
+        hello.messageDao = messageDao;
+    }
 
     @Test
     public void test_sayHello() throws Exception {
@@ -25,21 +32,5 @@ public class HelloTest {
 
         verify(messageDao).select(1L);
     }
-    private MessageDao messageDao;
 
-    private Hello hello;
-
-    @Before
-    public void setUp() throws Exception {
-        messageDao = mock(MessageDao.class);
-        Module module = new AbstractModule() {
-            @Override
-            protected void configure() {
-                bind(Hello.class);
-                bind(MessageDao.class).toInstance(messageDao);
-            }
-        };
-        Injector injector = Guice.createInjector(module);
-        hello = injector.getInstance(Hello.class);
-    }
 }

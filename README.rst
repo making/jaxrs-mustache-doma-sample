@@ -1,10 +1,17 @@
 
 ==================================================
-JAX-RSとThymeleafとDomaを組み合わせてみたー
+JAX-RSとMustacheとDoma2を組み合わせてみたー
 ==================================================
 
-リクエストを捌くのにJAX-RSを、ビューに `Thymeleaf <http://www.thymeleaf.org/>`_ を使用することでJavaEE6でアクションベースのWebフレームワークっぽいことを実現するサンプルです。
+リクエストを捌くのにJAX-RSを、ビューに `Mustache <http://mustache.github.io/>`_ を使用することでアクションベースのWebフレームワークっぽいことを実現するサンプルです。
 Webブラウザでそのまま表示の確認ができるHTMLテンプレートを使用することができるThymeleafはすごく良い感じな気がしています。
 
-Domaを突っ込んでみました。DomaとJAX-RSの連携にはCDIを使用しています。
+Doma2を突っ込んでみました。\ **Spring Boot上で動きます\ **。
 
+
+
+.. code-block:: bash
+
+  $ mvn spring-boot:run
+
+で起動。

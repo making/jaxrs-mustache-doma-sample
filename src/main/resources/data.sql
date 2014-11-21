@@ -1,0 +1,1 @@
+INSERT INTO message (id, template) VALUES (1, 'Hello, %s!');
